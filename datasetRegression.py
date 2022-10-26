@@ -17,6 +17,7 @@ from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import KFold
 
+
 class DataSetRegression():
     def __init__(self, X: pd.DataFrame, y: pd.Series):
         self.X = X.reset_index(drop=True)
@@ -28,6 +29,7 @@ class DataSetRegression():
         
     def show_miss_data(self):
         miss_data = self.X.isnull().sum().sort_values()
+        miss_data /= self.X.shape[0]
         if len(miss_data[miss_data > 0]) == 0:
             print('There is no missing data')
             return None
